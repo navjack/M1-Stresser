@@ -1,0 +1,558 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		2E8F0B5F2DC41139004E5AED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E8F0B462DC41137004E5AED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E8F0B4D2DC41137004E5AED;
+			remoteInfo = "M1 Stresser";
+		};
+		2E8F0B692DC41139004E5AED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E8F0B462DC41137004E5AED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E8F0B4D2DC41137004E5AED;
+			remoteInfo = "M1 Stresser";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2E8F0B4E2DC41137004E5AED /* M1 Stresser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "M1 Stresser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E8F0B5E2DC41139004E5AED /* M1 StresserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "M1 StresserTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E8F0B682DC41139004E5AED /* M1 StresserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "M1 StresserUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2E8F0B502DC41137004E5AED /* M1 Stresser */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "M1 Stresser";
+			sourceTree = "<group>";
+		};
+		2E8F0B612DC41139004E5AED /* M1 StresserTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "M1 StresserTests";
+			sourceTree = "<group>";
+		};
+		2E8F0B6B2DC41139004E5AED /* M1 StresserUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "M1 StresserUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2E8F0B4B2DC41137004E5AED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E8F0B5B2DC41139004E5AED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E8F0B652DC41139004E5AED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2E8F0B452DC41137004E5AED = {
+			isa = PBXGroup;
+			children = (
+				2E8F0B502DC41137004E5AED /* M1 Stresser */,
+				2E8F0B612DC41139004E5AED /* M1 StresserTests */,
+				2E8F0B6B2DC41139004E5AED /* M1 StresserUITests */,
+				2E8F0B4F2DC41137004E5AED /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2E8F0B4F2DC41137004E5AED /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F0B4E2DC41137004E5AED /* M1 Stresser.app */,
+				2E8F0B5E2DC41139004E5AED /* M1 StresserTests.xctest */,
+				2E8F0B682DC41139004E5AED /* M1 StresserUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2E8F0B4D2DC41137004E5AED /* M1 Stresser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E8F0B722DC41139004E5AED /* Build configuration list for PBXNativeTarget "M1 Stresser" */;
+			buildPhases = (
+				2E8F0B4A2DC41137004E5AED /* Sources */,
+				2E8F0B4B2DC41137004E5AED /* Frameworks */,
+				2E8F0B4C2DC41137004E5AED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2E8F0B502DC41137004E5AED /* M1 Stresser */,
+			);
+			name = "M1 Stresser";
+			packageProductDependencies = (
+			);
+			productName = "M1 Stresser";
+			productReference = 2E8F0B4E2DC41137004E5AED /* M1 Stresser.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2E8F0B5D2DC41139004E5AED /* M1 StresserTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E8F0B752DC41139004E5AED /* Build configuration list for PBXNativeTarget "M1 StresserTests" */;
+			buildPhases = (
+				2E8F0B5A2DC41139004E5AED /* Sources */,
+				2E8F0B5B2DC41139004E5AED /* Frameworks */,
+				2E8F0B5C2DC41139004E5AED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2E8F0B602DC41139004E5AED /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2E8F0B612DC41139004E5AED /* M1 StresserTests */,
+			);
+			name = "M1 StresserTests";
+			packageProductDependencies = (
+			);
+			productName = "M1 StresserTests";
+			productReference = 2E8F0B5E2DC41139004E5AED /* M1 StresserTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2E8F0B672DC41139004E5AED /* M1 StresserUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E8F0B782DC41139004E5AED /* Build configuration list for PBXNativeTarget "M1 StresserUITests" */;
+			buildPhases = (
+				2E8F0B642DC41139004E5AED /* Sources */,
+				2E8F0B652DC41139004E5AED /* Frameworks */,
+				2E8F0B662DC41139004E5AED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2E8F0B6A2DC41139004E5AED /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2E8F0B6B2DC41139004E5AED /* M1 StresserUITests */,
+			);
+			name = "M1 StresserUITests";
+			packageProductDependencies = (
+			);
+			productName = "M1 StresserUITests";
+			productReference = 2E8F0B682DC41139004E5AED /* M1 StresserUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2E8F0B462DC41137004E5AED /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1630;
+				LastUpgradeCheck = 1630;
+				TargetAttributes = {
+					2E8F0B4D2DC41137004E5AED = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					2E8F0B5D2DC41139004E5AED = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 2E8F0B4D2DC41137004E5AED;
+					};
+					2E8F0B672DC41139004E5AED = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 2E8F0B4D2DC41137004E5AED;
+					};
+				};
+			};
+			buildConfigurationList = 2E8F0B492DC41137004E5AED /* Build configuration list for PBXProject "M1 Stresser" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2E8F0B452DC41137004E5AED;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 2E8F0B4F2DC41137004E5AED /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2E8F0B4D2DC41137004E5AED /* M1 Stresser */,
+				2E8F0B5D2DC41139004E5AED /* M1 StresserTests */,
+				2E8F0B672DC41139004E5AED /* M1 StresserUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2E8F0B4C2DC41137004E5AED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E8F0B5C2DC41139004E5AED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E8F0B662DC41139004E5AED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2E8F0B4A2DC41137004E5AED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E8F0B5A2DC41139004E5AED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E8F0B642DC41139004E5AED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2E8F0B602DC41139004E5AED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2E8F0B4D2DC41137004E5AED /* M1 Stresser */;
+			targetProxy = 2E8F0B5F2DC41139004E5AED /* PBXContainerItemProxy */;
+		};
+		2E8F0B6A2DC41139004E5AED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2E8F0B4D2DC41137004E5AED /* M1 Stresser */;
+			targetProxy = 2E8F0B692DC41139004E5AED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2E8F0B702DC41139004E5AED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = C6WYC5GVFR;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2E8F0B712DC41139004E5AED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = C6WYC5GVFR;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		2E8F0B732DC41139004E5AED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "M1 Stresser/M1_Stresser.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C6WYC5GVFR;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "navjack.M1-Stresser";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2E8F0B742DC41139004E5AED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "M1 Stresser/M1_Stresser.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C6WYC5GVFR;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "navjack.M1-Stresser";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		2E8F0B762DC41139004E5AED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C6WYC5GVFR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "navjack.M1-StresserTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/M1 Stresser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/M1 Stresser";
+			};
+			name = Debug;
+		};
+		2E8F0B772DC41139004E5AED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C6WYC5GVFR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "navjack.M1-StresserTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/M1 Stresser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/M1 Stresser";
+			};
+			name = Release;
+		};
+		2E8F0B792DC41139004E5AED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C6WYC5GVFR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "navjack.M1-StresserUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "M1 Stresser";
+			};
+			name = Debug;
+		};
+		2E8F0B7A2DC41139004E5AED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C6WYC5GVFR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "navjack.M1-StresserUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "M1 Stresser";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2E8F0B492DC41137004E5AED /* Build configuration list for PBXProject "M1 Stresser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E8F0B702DC41139004E5AED /* Debug */,
+				2E8F0B712DC41139004E5AED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2E8F0B722DC41139004E5AED /* Build configuration list for PBXNativeTarget "M1 Stresser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E8F0B732DC41139004E5AED /* Debug */,
+				2E8F0B742DC41139004E5AED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2E8F0B752DC41139004E5AED /* Build configuration list for PBXNativeTarget "M1 StresserTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E8F0B762DC41139004E5AED /* Debug */,
+				2E8F0B772DC41139004E5AED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2E8F0B782DC41139004E5AED /* Build configuration list for PBXNativeTarget "M1 StresserUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E8F0B792DC41139004E5AED /* Debug */,
+				2E8F0B7A2DC41139004E5AED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2E8F0B462DC41137004E5AED /* Project object */;
+}
