@@ -13,7 +13,7 @@ jobs:
       - name: Build Debug
         run: |
           xcodebuild clean build \
-            -project "M1 Stresser/M1 Stresser.xcodeproj" \
+            -project "M1 Stresser.xcodeproj" \
             -scheme "M1 Stresser" \
             -configuration Debug \
             -sdk macosx \
