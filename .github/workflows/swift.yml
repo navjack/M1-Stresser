@@ -1,0 +1,51 @@
+name: Swift macOS CI
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [ main ]
+
+jobs:
+  build-macos:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.3.app
+      - name: Xcode version
+        run: xcodebuild -version
+      - name: Build Debug
+        run: |
+          xcodebuild clean archive \
+            -project "M1 Stresser.xcodeproj" \
+            -scheme "M1 Stresser" \
+            -configuration Debug \
+            -archivePath "./build/M1Stresser.xcarchive" \
+            -sdk macosx \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO
+      
+      # Export the app from the archive
+      - name: Export App
+        run: |
+          mkdir -p ./build/export
+          cp -R "./build/M1Stresser.xcarchive/Products/Applications/M1 Stresser.app" "./build/export/"
+          # Create a zip for easier downloading
+          cd "./build/export"
+          zip -r "M1Stresser.zip" "M1 Stresser.app"
+          
+      # Upload app directory as workflow artifact
+      - name: Upload App Directory Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: M1-Stresser-App
+          path: ./build/export/M1 Stresser.app
+          retention-days: 14
+          
+      # Upload zip file as workflow artifact for easy release creation
+      - name: Upload Zip Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: M1-Stresser-Zip
+          path: ./build/export/M1Stresser.zip
+          retention-days: 14
