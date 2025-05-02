@@ -30,28 +30,22 @@ jobs:
         run: |
           mkdir -p ./build/export
           cp -R "./build/M1Stresser.xcarchive/Products/Applications/M1 Stresser.app" "./build/export/"
+          # Create a zip for easier downloading
+          cd "./build/export"
+          zip -r "M1Stresser.zip" "M1 Stresser.app"
           
-      # Upload app directory as workflow artifact (not zipped)
-      - name: Upload Build Artifact
+      # Upload app directory as workflow artifact
+      - name: Upload App Directory Artifact
         uses: actions/upload-artifact@v4
         with:
           name: M1-Stresser-App
           path: ./build/export/M1 Stresser.app
           retention-days: 14
-      
-      # Create a zip for the GitHub Release
-      - name: Create Release Zip
-        run: |
-          cd "./build/export"
-          zip -r "M1Stresser.zip" "M1 Stresser.app"
           
-      # Create GitHub Release with versioned name based on run number and date
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
+      # Upload zip file as workflow artifact for easy release creation
+      - name: Upload Zip Artifact
+        uses: actions/upload-artifact@v4
         with:
-          tag_name: build-${{ github.run_number }}
-          name: Build ${{ github.run_number }} (${{ github.event.repository.updated_at }})
-          files: ./build/export/M1Stresser.zip
-          draft: false
-          generate_release_notes: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          name: M1-Stresser-Zip
+          path: ./build/export/M1Stresser.zip
+          retention-days: 14
