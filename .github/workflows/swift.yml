@@ -1,7 +1,7 @@
 name: Swift macOS CI
 
 on:
-workflow_dispatch:
+workflow_dispatch: {}
 push:
 branches: [ main ]
 pull_request:
@@ -34,10 +34,10 @@ uses: actions/checkout@v4
   # (Optional) Run tests
   # - name: Run Unit Tests
   #   run: |
-  #     xcodebuild test \
-  #       -project "M1 Stresser/M1 Stresser.xcodeproj" \
-  #       -scheme "M1 Stresser" \
-  #       -configuration Debug \
-  #       -destination "platform=macOS,arch=arm64" \
-  #       CODE_SIGN_IDENTITY="" \
-  #       CODE_SIGNING_REQUIRED=NO
+  #       xcodebuild test \
+  #         -project "M1 Stresser/M1 Stresser.xcodeproj" \
+  #         -scheme "M1 Stresser" \
+  #         -configuration Debug \
+  #         -destination "platform=macOS,arch=arm64" \
+  #         CODE_SIGN_IDENTITY="" \
+  #         CODE_SIGNING_REQUIRED=NO
