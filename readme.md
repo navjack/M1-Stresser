@@ -22,4 +22,13 @@ The application provides several stress patterns targeting different CPU compone
 
 This is a standard SwiftUI application. Open the `M1 Stresser.xcodeproj` file in Xcode and build/run.
 
+**Build Requirements:**
+- macOS 15.0 or later
+- Xcode 16.4 beta or later
+- Swift 5.0
+
+**Note:** This project was developed using Xcode Version 16.4 beta (16F1t) on macOS 15.5 beta. Compatibility issues may arise if you're using different versions.
+
+**Note:** This project includes profiling instrumentation and may require adjusting the DEVELOPMENT_TEAM setting in the Xcode project for your own development team.
+
 *(Note: The project includes a simple `Item` data model using SwiftData, which doesn't appear to be used by the core stress-testing functionality.)*
