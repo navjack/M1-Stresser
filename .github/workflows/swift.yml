@@ -10,6 +10,10 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.3.app
+      - name: Xcode version
+        run: xcodebuild -version
       - name: Build Debug
         run: |
           xcodebuild clean build \
