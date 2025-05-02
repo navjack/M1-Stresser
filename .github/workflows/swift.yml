@@ -1,54 +1,43 @@
 name: Swift macOS CI
 
-# Trigger on pushes & PRs to main (adjust branch name as needed)
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+workflow_dispatch:
+push:
+branches: [ main ]
+pull_request:
+branches: [ main ]
 
 jobs:
-  build-macos:
-    name: Build & Test on macOS
-    runs-on: macos-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
+build-macos:
+name: Build Debug on macOS
+runs-on: macos-latest
+steps:
+- name: Check out repository
+uses: actions/checkout@v4
 
-      # (Optional) Explicitly select Xcode 16.3 if you want to match your local setup
-      #- name: Select Xcode 16.3
-      #  uses: maxim-lobanov/setup-xcode@v1
-      #  with:
-      #    xcode-version: '16.3'
+  # (Optional) Pin Xcode version to match local environment
+  # - name: Set up Xcode 16.3
+  #   uses: maxim-lobanov/setup-xcode@v1
+  #   with:
+  #     xcode-version: '16.3'
 
-      - name: Build Release
-        run: |
-          xcodebuild clean build \
-            -project "M1 Stresser/M1 Stresser.xcodeproj" \
-            -scheme "M1 Stresser" \
-            -configuration Debug \
-            -sdk macosx \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO
+  - name: Build Debug
+    run: |
+      xcodebuild clean build \
+        -project "M1 Stresser/M1 Stresser.xcodeproj" \
+        -scheme "M1 Stresser" \
+        -configuration Debug \
+        -sdk macosx \
+        CODE_SIGN_IDENTITY="" \
+        CODE_SIGNING_REQUIRED=NO
 
-      # If you have a test target, you can invoke it like this:
-      #- name: Run Unit Tests
-      #  run: |
-      #    xcodebuild test \
-      #      -project "M1 Stresser/M1 Stresser.xcodeproj" \
-      #      -scheme "M1 Stresser" \
-      #      -configuration Debug \
-      #      -destination "platform=macOS,arch=arm64" \
-      #      CODE_SIGN_IDENTITY="" \
-      #      CODE_SIGNING_REQUIRED=NO
-
-      # (Optional) Archive for Profiling or Distribution
-      #- name: Archive for Distribution
-      #  run: |
-      #    xcodebuild archive \
-      #      -project "M1 Stresser/M1 Stresser.xcodeproj" \
-      #      -scheme "M1 Stresser" \
-      #      -configuration Release \
-      #      -archivePath $PWD/build/M1Stresser.xcarchive \
-      #      CODE_SIGN_IDENTITY="" \
-      #      CODE_SIGNING_REQUIRED=NO
+  # (Optional) Run tests
+  # - name: Run Unit Tests
+  #   run: |
+  #     xcodebuild test \
+  #       -project "M1 Stresser/M1 Stresser.xcodeproj" \
+  #       -scheme "M1 Stresser" \
+  #       -configuration Debug \
+  #       -destination "platform=macOS,arch=arm64" \
+  #       CODE_SIGN_IDENTITY="" \
+  #       CODE_SIGNING_REQUIRED=NO
