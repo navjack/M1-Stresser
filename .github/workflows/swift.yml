@@ -16,10 +16,37 @@ jobs:
         run: xcodebuild -version
       - name: Build Debug
         run: |
-          xcodebuild clean build \
+          xcodebuild clean archive \
             -project "M1 Stresser.xcodeproj" \
             -scheme "M1 Stresser" \
             -configuration Debug \
+            -archivePath "./build/M1Stresser.xcarchive" \
             -sdk macosx \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO
+      
+      # Export the app from the archive
+      - name: Export App
+        run: |
+          mkdir -p ./build/export
+          cp -R "./build/M1Stresser.xcarchive/Products/Applications/M1 Stresser.app" "./build/export/"
+          # Create a zip of the app for distribution
+          cd "./build/export"
+          zip -r "M1Stresser.zip" "M1 Stresser.app"
+          
+      # Option 1: Upload as workflow artifact
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: M1-Stresser
+          path: ./build/export/M1Stresser.zip
+          retention-days: 14
+          
+      # Option 2: Create GitHub Release (will only run on tags)
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ./build/export/M1Stresser.zip
+          draft: false
+          prerelease: false
