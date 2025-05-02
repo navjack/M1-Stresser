@@ -28,5 +28,3 @@ This is a standard SwiftUI application. Open the `M1 Stresser.xcodeproj` file in
 - Swift 5.0
 
 **Note:** This project was developed using Xcode Version 16.4 beta (16F1t) on macOS 15.5 beta. Compatibility issues may arise if you're using different versions.
-
-**Note:** This project includes profiling instrumentation and may require adjusting the DEVELOPMENT_TEAM setting in the Xcode project for your own development team.
