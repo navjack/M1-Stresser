@@ -1,0 +1,13 @@
+# Shell history files (contain potentially sensitive commands)
+.zsh_history
+.bash_history
+
+# Xcode build artifacts
+*.profraw
+default.profraw
+
+# macOS system files
+.DS_Store
+
+# Compiled binaries
+PowermetricsHelper
