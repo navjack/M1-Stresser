@@ -11,7 +11,20 @@ import SwiftUI
 struct M1_StresserApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                ContentView()
+                    .tabItem {
+                        Label("General", systemImage: "cpu")
+                    }
+                ExtremeStressView()
+                    .tabItem {
+                        Label("Extreme", systemImage: "flame.fill")
+                    }
+                LiveMetricsView()
+                    .tabItem {
+                        Label("Live Metrics", systemImage: "waveform.path.ecg")
+                    }
+            }
         }
     }
 }

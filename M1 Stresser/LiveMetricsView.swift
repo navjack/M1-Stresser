@@ -1,164 +1,139 @@
-// LiveMetricsView.swift
-// SwiftUI dashboard for real-time power/thermal metrics from PowermetricsHelper
-
-import SwiftUI
 import Foundation
+import SwiftUI
 
-struct MetricSample: Identifiable {
-    let id = UUID()
-    let timestamp: Date
-    let cpuPower: Double
-    let gpuPower: Double
-    let dieTemp: Double
-    let thermalPressure: String
-}
+@MainActor
+class MetricsModel: ObservableObject {
+    @Published var cpuPower_mW: Double? = nil
+    @Published var gpuPower_mW: Double? = nil
+    @Published var dieTemp_C: Double? = nil
+    @Published var thermalPressure: String? = nil
+    @Published var lastUpdated: Date? = nil
 
-@Observable
-final class MetricsModel: ObservableObject {
-    @Published var current: MetricSample?
-    @Published var history: [MetricSample] = []
-    private var task: Task<Void, Never>?
-
+    private var powermetricsHelper: Process?
+    private var isRunning = false
+    
+    init() { start() }
+    
     func start() {
-        // Launch PowermetricsHelper and parse its stdout
-        task = Task.detached(priority: .userInitiated) { [weak self] in
+        Task.detached {
+            print("Launching powermetrics process")
             let process = Process()
-            let helperPath = Bundle.main.path(forResource: "PowermetricsHelper", ofType: nil) ?? "/usr/local/bin/PowermetricsHelper" // Adjust as needed
-            process.launchPath = "/usr/bin/sudo"
-            process.arguments = [helperPath]
+            process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
+            process.arguments = ["powermetrics", "--show-process-gpu"]
+            
             let pipe = Pipe()
             process.standardOutput = pipe
-            process.standardError = nil
+            process.standardError = pipe
+            
             do {
                 try process.run()
             } catch {
-                print("Failed to launch helper: \(error)")
+                print("Failed to launch powermetrics process: \(error)")
+                await MainActor.run {
+                    self.isRunning = false
+                }
                 return
             }
+            
+            print("Process launched, waiting for output")
+            await MainActor.run {
+                self.powermetricsHelper = process
+            }
+            await MainActor.run {
+                self.isRunning = true
+            }
+            
             let handle = pipe.fileHandleForReading
-            while !Task.isCancelled {
-                if let line = try? handle.readLine() {
-                    guard let data = line.data(using: .utf8),
-                        let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                        let cpu = json["cpu_power_mw"] as? Double,
-                        let gpu = json["gpu_power_mw"] as? Double,
-                        let temp = json["die_temp_c"] as? Double,
-                        let pressure = json["thermal_pressure"] as? String
-                    else { continue }
-                    let sample = MetricSample(timestamp: .now, cpuPower: cpu, gpuPower: gpu, dieTemp: temp, thermalPressure: pressure)
-                    await MainActor.run {
-                        self?.current = sample
-                        self?.history.append(sample)
-                        if self?.history.count ?? 0 > 60 { self?.history.removeFirst() }
+            
+            func makeLineSequence(from handle: FileHandle) -> AsyncThrowingStream<String, Error> {
+                AsyncThrowingStream { continuation in
+                    Task {
+                        var buffer = Data()
+                        do {
+                            for try await byte in handle.bytes {
+                                if byte == 0x0A { // newline
+                                    if let line = String(data: buffer, encoding: .utf8) {
+                                        continuation.yield(line)
+                                    }
+                                    buffer.removeAll()
+                                } else {
+                                    buffer.append(byte)
+                                }
+                            }
+                            if !buffer.isEmpty, let line = String(data: buffer, encoding: .utf8) {
+                                continuation.yield(line)
+                            }
+                            continuation.finish()
+                        } catch {
+                            continuation.finish(throwing: error)
+                        }
                     }
                 }
             }
-            process.terminate()
-        }
-    }
-    
-    func stop() {
-        task?.cancel()
-        task = nil
-    }
-}
-
-struct LiveMetricsView: View {
-    @StateObject private var model = MetricsModel()
-    
-    var body: some View {
-        VStack(spacing: 18) {
-            Text("Live System Metrics").font(.title.bold())
-            if let sample = model.current {
-                HStack(spacing: 36) {
-                    MetricCard(title: "CPU Power", value: String(format: "%.1f mW", sample.cpuPower), color: .blue)
-                    MetricCard(title: "GPU Power", value: String(format: "%.1f mW", sample.gpuPower), color: .purple)
-                    MetricCard(title: "Die Temp", value: String(format: "%.1f°C", sample.dieTemp), color: sample.dieTemp > 90 ? .red : .orange)
-                    MetricCard(title: "Thermal", value: sample.thermalPressure, color: sample.thermalPressure == "nominal" ? .green : .red)
+            
+            func withTimeout<T>(_ seconds: UInt64, operation: @escaping () async throws -> T) async throws -> T {
+                try await withThrowingTaskGroup(of: T.self) { group in
+                    group.addTask {
+                        return try await operation()
+                    }
+                    group.addTask {
+                        try await Task.sleep(nanoseconds: seconds * 1_000_000_000)
+                        throw NSError(domain: "Timeout", code: 1, userInfo: [NSLocalizedDescriptionKey: "Timeout after \(seconds) seconds"])
+                    }
+                    let result = try await group.next()!
+                    group.cancelAll()
+                    return result
                 }
-                Divider().padding(.vertical, 8)
-                MetricsHistoryChart(samples: model.history)
-                    .frame(height: 120)
-            } else {
-                ProgressView("Waiting for data...")
             }
-        }
-        .padding(40)
-        .frame(minWidth: 500)
-        .onAppear { model.start() }
-        .onDisappear { model.stop() }
-    }
-}
-
-struct MetricCard: View {
-    let title: String
-    let value: String
-    let color: Color
-    var body: some View {
-        VStack {
-            Text(title).font(.headline).foregroundColor(.secondary)
-            Text(value).font(.system(size: 24, weight: .bold)).foregroundColor(color)
-        }
-        .frame(width: 100)
-        .padding(8)
-        .background(.thinMaterial)
-        .cornerRadius(10)
-    }
-}
-
-struct MetricsHistoryChart: View {
-    let samples: [MetricSample]
-    var body: some View {
-        GeometryReader { geo in
-            let points = samples.enumerated().map { (idx, s) in
-                CGPoint(x: geo.size.width * CGFloat(idx) / CGFloat(max(1, samples.count-1)),
-                        y: geo.size.height * (1 - CGFloat(s.cpuPower / (samples.map{ $0.cpuPower }.max() ?? 1))))
+            
+            do {
+                let lineSequence = makeLineSequence(from: handle)
+                // Wait for first line with timeout 5 seconds
+                let firstLine = try await withTimeout(5) {
+                    var iterator = lineSequence.makeAsyncIterator()
+                    guard let line = try await iterator.next() else {
+                        throw NSError(domain: "NoOutput", code: 2, userInfo: [NSLocalizedDescriptionKey: "No output received"])
+                    }
+                    return line
+                }
+                print("Received first line: \(firstLine)")
+                
+                // Process lines with per-line timeout 5 seconds
+                var iterator = lineSequence.makeAsyncIterator()
+                // Yield first line that we already got above
+                await self.processLine(firstLine)
+                
+                while true {
+                    let line = try await withTimeout(5) {
+                        guard let nextLine = try await iterator.next() else {
+                            throw NSError(domain: "StreamEnded", code: 3, userInfo: [NSLocalizedDescriptionKey: "Stream ended"])
+                        }
+                        return nextLine
+                    }
+                    print("Received line: \(line)")
+                    await self.processLine(line)
+                }
+            } catch {
+                print("Timeout or error occurred: \(error.localizedDescription)")
+                process.terminate()
+                print("Process terminated due to error or timeout")
+                await MainActor.run {
+                    self.isRunning = false
+                }
             }
-            Path { path in
-                guard let first = points.first else { return }
-                path.move(to: first)
-                points.dropFirst().forEach { path.addLine(to: $0) }
-            }
-            .stroke(.blue, style: StrokeStyle(lineWidth: 2, lineCap: .round))
-            // Repeat for GPU and Temp as overlays:
-            let gpuPoints = samples.enumerated().map { (idx, s) in
-                CGPoint(x: geo.size.width * CGFloat(idx) / CGFloat(max(1, samples.count-1)),
-                        y: geo.size.height * (1 - CGFloat(s.gpuPower / (samples.map{ $0.gpuPower }.max() ?? 1))))
-            }
-            Path { path in
-                guard let first = gpuPoints.first else { return }
-                path.move(to: first)
-                gpuPoints.dropFirst().forEach { path.addLine(to: $0) }
-            }
-            .stroke(.purple.opacity(0.7), style: StrokeStyle(lineWidth: 2, dash: [4]))
-            let tempPoints = samples.enumerated().map { (idx, s) in
-                CGPoint(x: geo.size.width * CGFloat(idx) / CGFloat(max(1, samples.count-1)),
-                        y: geo.size.height * (1 - CGFloat(s.dieTemp / (samples.map{ $0.dieTemp }.max() ?? 1))))
-            }
-            Path { path in
-                guard let first = tempPoints.first else { return }
-                path.move(to: first)
-                tempPoints.dropFirst().forEach { path.addLine(to: $0) }
-            }
-            .stroke(.orange.opacity(0.5), style: StrokeStyle(lineWidth: 2))
         }
     }
-}
-
-#Preview {
-    LiveMetricsView()
-}
-
-// Utility for reading a line from FileHandle (simple, synchronous)
-extension FileHandle {
-    func readLine() throws -> String? {
-        var data = Data()
-        while true {
-            let byte = try self.read(upToCount: 1)
-            if byte == nil || byte!.isEmpty { return data.isEmpty ? nil : String(data: data, encoding: .utf8) }
-            if byte![0] == 0x0A { break } // Newline
-            data.append(byte!)
+    
+    private func processLine(_ line: String) async {
+        guard let data = line.data(using: .utf8),
+              let dict = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else { return }
+        var didUpdate = false
+        if let cpu = dict["cpu_power_mw"] as? Double { self.cpuPower_mW = cpu; didUpdate = true }
+        if let gpu = dict["gpu_power_mw"] as? Double { self.gpuPower_mW = gpu; didUpdate = true }
+        if let temp = dict["die_temp_c"] as? Double { self.dieTemp_C = temp; didUpdate = true }
+        if let pressure = dict["thermal_pressure"] as? String { self.thermalPressure = pressure; didUpdate = true }
+        if didUpdate {
+            self.lastUpdated = Date()
         }
-        return String(data: data, encoding: .utf8)
     }
 }
